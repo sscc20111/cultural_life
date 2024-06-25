@@ -1,10 +1,58 @@
-.seoulWrap {}
-.seoulWrap form {}
-.seoulWrap form select {}
-.seoulWrap form input {}
-.seoulWrap form button {}
-.seoulWrap .viewItem {}
-.seoulWrap .viewItem .ItemWrap {}
-.seoulWrap .viewItem .ItemWrap .desc {}
-.seoulWrap .viewItem .ItemWrap .imgBox {}
-.seoulWrap .viewItem .ItemWrap .imgBox img {max-width: 100%;}
+.Wraper {font-family: 'Gmarket';}
+
+.Wraper .header {}
+.Wraper .header .headerMenu {height: 100px; display: flex; align-items: center;}
+.Wraper .header .headerMenu h2 {margin: 0 40px 0 0;}
+.Wraper .header .headerMenu .searchBox {max-width: 452px; border: 1px solid rgba(0,0,0,.15); border-radius: 1rem;}
+.Wraper .header .headerMenu .searchBox svg {color: #000;}
+.Wraper .header .headerMenu .searchBox input {border-radius: 1rem; border: none;}
+.Wraper .header .headerMenu .searchBox button {border-radius: 1rem; border: none;}
+.Wraper .header .headerNavi {}
+.Wraper .header .headerNavi button {font-weight: 600; background-color: #fff; color: #000; border: none;}
+
+
+.Wraper .banner {background: #0000005b; height: 520px;}
+.Wraper .banner .swiper {height: 100%; max-width: 1440px;}
+.Wraper .banner .SliderWrap {display: flex; justify-content: space-around;}
+.Wraper .banner .SliderWrap .imgBox {}
+.Wraper .banner .SliderWrap .imgBox img {max-width: 100%;max-height: 100%;}
+.Wraper .banner .SliderWrap .desc {display: flex; flex-direction: column; justify-content: center;}
+.Wraper .banner .SliderWrap .desc h4 {margin: 0 0 30px 0; font-size: 35px; font-weight: 600;}
+.Wraper .banner .SliderWrap .desc h4 span {}
+.Wraper .banner .SliderWrap .desc p {margin: 0;}
+.Wraper .banner .SliderWrap .desc .USE_TRGT {margin: 0 0 40px 0;}
+.Wraper .banner .SliderWrap .desc .USE_FEE {}
+.Wraper .banner .SliderWrap .desc .PLACE {}
+.Wraper .banner .SliderWrap .desc .DATE {}
+
+
+.Wraper .seoulWrap {}
+.Wraper .seoulWrap form {}
+.Wraper .seoulWrap form select {}
+.Wraper .seoulWrap form input {}
+.Wraper .seoulWrap form button {}
+.Wraper .seoulWrap .viewItem {}
+.Wraper .seoulWrap .viewItem .ItemWrap {}
+.Wraper .seoulWrap .viewItem .ItemWrap .imgBox {}
+.Wraper .seoulWrap .viewItem .ItemWrap .imgBox img {max-width: 100%;}
+.Wraper .seoulWrap .viewItem .ItemWrap .desc {}
+
+
+
+
+
+@font-face {
+	font-family: 'Gmarket';
+	font-weight: 100;
+	src: url('./assets/fonts/GmarketSansLight.woff');
+}
+@font-face {
+	font-family: 'Gmarket';
+	font-weight: 300;
+	src: url('./assets/fonts/GmarketSansMedium.woff');
+}
+@font-face {
+	font-family: 'Gmarket';
+	font-weight: 600;
+	src: url('./assets/fonts/GmarketSansBold.woff');
+}

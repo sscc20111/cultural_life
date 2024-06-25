@@ -13,6 +13,11 @@ const SeoulOption = [
     '축제-전통/역사',
     '콘서트',
     '클래식',
-]
+];
 
-export {SeoulOption}
+const ServiceKey = {
+    SEOUL : '596a4c615473736339366a51536f54',
+    KPOPS : '2e9d38e5b67d47c3a96d1d6f1388635a',
+};
+
+export {SeoulOption, ServiceKey}
