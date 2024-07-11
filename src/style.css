@@ -1,4 +1,5 @@
 .Wraper {font-family: 'Gmarket';}
+.Wraper img {max-width: 100%;max-height: 100%;}
 
 .Wraper .header {}
 .Wraper .header .headerMenu {height: 100px; display: flex; align-items: center;}
@@ -15,7 +16,6 @@
 .Wraper .banner .swiper {height: 100%; max-width: 1440px;}
 .Wraper .banner .SliderWrap {display: flex; justify-content: space-around;}
 .Wraper .banner .SliderWrap .imgBox {}
-.Wraper .banner .SliderWrap .imgBox img {max-width: 100%;max-height: 100%;}
 .Wraper .banner .SliderWrap .desc {display: flex; flex-direction: column; justify-content: center;}
 .Wraper .banner .SliderWrap .desc h4 {margin: 0 0 30px 0; font-size: 35px; font-weight: 600;}
 .Wraper .banner .SliderWrap .desc h4 span {}
@@ -25,8 +25,20 @@
 .Wraper .banner .SliderWrap .desc .PLACE {}
 .Wraper .banner .SliderWrap .desc .DATE {}
 
+.Wraper .contents {margin: 100px auto 0; width: 100%; max-width: 1200px; }
 
-.Wraper .seoulWrap {}
+.Wraper .contents.content01 {display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 20px;}
+.Wraper .contents.content01 .contentBox {height: 100px; display: flex; justify-content: space-between; }
+.Wraper .contents.content01 .contentBox .textBox {}
+.Wraper .contents.content01 .contentBox .textBox h3 {font-size: 20px; font-weight: 600;}
+.Wraper .contents.content01 .contentBox .textBox p {font-size: 14px; margin-bottom: 0.1rem;}
+.Wraper .contents.content01 .contentBox .imgBox {width: 100%; height: 100%; max-width: 160px; position: relative; overflow: hidden;}
+.Wraper .contents.content01 .contentBox .imgBox::after {position: absolute; content: ''; display: block; top: 0; left: 0; width: 100%;height: 100%; background: linear-gradient(90deg, #fff 10%, #fff 25%, #ffffff33 45%, #ffffff00 100%);}
+.Wraper .contents.content01 .contentBox .imgBox img {position: absolute; transform: translate(-50%,-50%); top: 50%;left: 50%; max-width: 120%;max-height: 120%;}
+
+
+
+/* .Wraper .seoulWrap {}
 .Wraper .seoulWrap form {}
 .Wraper .seoulWrap form select {}
 .Wraper .seoulWrap form input {}
@@ -35,7 +47,7 @@
 .Wraper .seoulWrap .viewItem .ItemWrap {}
 .Wraper .seoulWrap .viewItem .ItemWrap .imgBox {}
 .Wraper .seoulWrap .viewItem .ItemWrap .imgBox img {max-width: 100%;}
-.Wraper .seoulWrap .viewItem .ItemWrap .desc {}
+.Wraper .seoulWrap .viewItem .ItemWrap .desc {} */
 
 
 

@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import { fetchSeoul } from '../js/api';
+import { KopisOption } from '../js/Option'
 
 const MenuCategory = () => {
 
@@ -41,7 +42,7 @@ const SearchBox = () => {
 
 };
 
-const Header = () => {
+const Header = ({CateSelect}) => {
 
     return(
         <Container className='header'>
@@ -50,13 +51,9 @@ const Header = () => {
                 <SearchBox></SearchBox>
             </div>
             <Stack className='headerNavi' direction="horizontal" gap={3} >
-                <Button>뮤지컬</Button>
-                <Button>콘서트</Button>
-                <Button>전시/행사</Button>
-                <Button>클래식/무용</Button>
-                <Button>아동/가족</Button>
-                <Button>연극</Button>
-                <Button>축제</Button>
+                {KopisOption.map((item, index) => (
+                    <button key={index} onClick={(e)=>CateSelect(item.code)}>{item.name}</button>
+                ))}
             </Stack>
         </Container>
     )
