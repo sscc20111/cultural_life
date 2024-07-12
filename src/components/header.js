@@ -12,6 +12,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import { fetchSeoul } from '../js/api';
 import { KopisOption } from '../js/Option'
+import { Link } from 'react-router-dom';
 
 const MenuCategory = () => {
 
@@ -47,12 +48,12 @@ const Header = ({CateSelect}) => {
     return(
         <Container className='header'>
             <div className='headerMenu'>
-                <h2 className='logo'><a href='/'>LOGO</a></h2>
+                <h2 className='logo'><Link to='/'>LOGO</Link></h2>
                 <SearchBox></SearchBox>
             </div>
             <Stack className='headerNavi' direction="horizontal" gap={3} >
                 {KopisOption.map((item, index) => (
-                    <button key={index} onClick={(e)=>CateSelect(item.code)}>{item.name}</button>
+                    <Link key={index} to='Langking' onClick={(e)=>CateSelect(item.code)}>{item.name}</Link>
                 ))}
             </Stack>
         </Container>

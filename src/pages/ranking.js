@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Container from 'react-bootstrap/Container';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, FreeMode } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import { Link } from 'react-router-dom';
 
 const LangkingPage = ({Item, CateCode}) => {
     // const [CateCode,setCateCode] = useState('AAAA');
@@ -35,16 +32,16 @@ const LangkingPage = ({Item, CateCode}) => {
             SliceLangk()
         }
     },[CateCode]);
-    useEffect(()=>{
-        console.log(TopLangk);
-        console.log(LowLangk);
-    },[TopLangk]);
+    // useEffect(()=>{
+    //     console.log(TopLangk);
+    //     console.log(LowLangk);
+    // },[TopLangk]);
     return(
         <Swiper slidesPerView={3} spaceBetween={30} freeMode={true} pagination={{ clickable: true, }} modules={[FreeMode, Pagination]} className="mySwiper" >
             {Item.length > 0 ? (
                 TopLangk.map((item, index) => (
                     <SwiperSlide key={index}>
-                        <a className='ItemWrap' onClick={()=>console.log(item.DATA_ID)}>
+                        <Link className='ItemWrap' to="/Detail" state= {item.DATA_ID} onClick={()=>console.log(item.DATA_ID)}>
                             <div className='imgBox'>
                                 <img src={item.MAIN_IMG} alt={item.TITLE}></img>
                             </div>
@@ -53,7 +50,7 @@ const LangkingPage = ({Item, CateCode}) => {
                                 <p>{item.PLACE}<span>({item.AREA})</span></p>
                                 <span>{item.DATE1}~{item.DATE2}</span>
                             </div>
-                        </a>
+                        </Link>
                     </SwiperSlide>
                 ))
             ) : (
@@ -76,4 +73,4 @@ const LangkingPage = ({Item, CateCode}) => {
 
 };
 
-export { LangkingPage }
+export default LangkingPage

@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { format, addDays } from 'date-fns';
 
 import { fetchSeoul, fetchKopis, fetchRanking, fetchFestival } from './js/api'; // api.js에서 fetchSeoul 함수를 가져옵니다.
 import { SeoulOption, KopisOption, ServiceKey } from './js/Option'
 
 import { Header } from './components/header'
-import { Banner } from './components/banner'
-import { Content1, Content2, Content3 } from './components/contents'
-import { LangkingPage } from './components/sidepage'
+import MainPage from './pages/main';
+import LangkingPage from './pages/ranking';
+import DetailPage from './pages/detail';
 
 import './App.css';
 import './style.css';
@@ -102,120 +102,24 @@ function App() {
     // KopisResponse()
   }, []);
 
-  // const Search = (e) => {
-  //   e.preventDefault();
-  //   SeoulResponse()
-  // };
-  // const Search2 = (e) => {
-  //   e.preventDefault();
-  //   KopisResponse()
-  // };
   const [CateCode,setCateCode] = useState('AAAA');
 
-  const CateSelect = (Cate) => {//상위 component_navi에서 선택한 카테고리 코드 받아옴
-    setCateCode(Cate);
-    console.log(Cate);
+  const CateSelect = (CateCode) => {//상위 component_navi에서 선택한 카테고리 코드 받아옴
+    setCateCode(CateCode);
+    // console.log(CateCode);
 };
 
   return (
-    <div className='Wraper'>
-      <Header CateSelect={CateSelect}></Header>
-      {/* <Banner BannerItem={BannerItem}></Banner>
-      <Content1 Item={ContentsRankingItem}></Content1>
-      <Content2 Item={ContentsRankingItem}></Content2>
-      <Content3 Item={FestivalItem}></Content3> */}
-      <LangkingPage Item={RankingItem} CateCode={CateCode}></LangkingPage>
-
-      {/* <div className='contents content1'>
-        {RankingItem.length > 0 ? (
-          RankingItem.map((data, index) => (
-            <div className='contentsBox' key={index}>
-                <div>
-                  <h4>{data.code} 랭킹</h4>
-                  {data.map((item, i) => (
-                    <p key={i}>{item.TITLE}</p>
-                  ))}
-                </div>
-            </div>
-          ))
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div> */}
-
-      {/* <div className='seoulWrap'>
-        <form ref={form}>
-          <select name="option" value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
-            {SeoulOption.map((option) => (
-              <option value={option} key={option}>{option === '%20' ? '분류' : option}</option>
-            ))}
-          </select>
-          <input value={searchText} onChange={(e) => setSearchText(e.target.value)}></input>
-          <button onClick={Search}>검색</button>
-        </form>
-
-        <div className='viewItem'>
-          <Swiper
-            slidesPerView={5}
-            centeredSlides={true}
-            spaceBetween={30}
-            pagination={{
-              type: 'fraction',
-            }}
-            navigation={true}
-            modules={[Pagination, Navigation]}
-          >
-          {SeoulData.map((data, index) => (
-              <SwiperSlide className='ItemWrap'key={index}>
-                <div className='imgBox'>
-                  <img src={data.MAIN_IMG} alt={data.TITLE}></img>
-                </div>
-                <div className='desc'>
-                  <h4>{data.TITLE}<span>({data.CODENAME})</span></h4>
-                  <p>{data.PLACE}<span>({data.GUNAME})</span></p>
-                  <span>{data.DATE}</span>
-                </div>
-              </SwiperSlide>
-          ))}
-          </Swiper>
-        </div>
-        <form ref={form2}>
-          <select name="option" value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
-            {SeoulOption.map((option) => (
-              <option value={option} key={option}>{option === '%20' ? '분류' : option}</option>
-            ))}
-          </select>
-          <input value={searchText2} onChange={(e) => setSearchText2(e.target.value)}></input>
-          <button onClick={Search2}>검색</button>
-        </form>
-        <div className='viewItem'>
-          <Swiper
-            slidesPerView={5}
-            centeredSlides={true}
-            spaceBetween={30}
-            pagination={{
-              type: 'fraction',
-            }}
-            navigation={true}
-            modules={[Pagination, Navigation]}
-          >
-          {KopisData.map((data, index) => (
-              <SwiperSlide className='ItemWrap'key={index}>
-                <div className='imgBox'>
-                  <img src={data.MAIN_IMG} alt={data.TITLE}></img>
-                </div>
-                <div className='desc'>
-                  <h4>{data.TITLE}<span>({data.CODENAME})</span></h4>
-                  <p>{data.PLACE}<span>({data.GUNAME})</span></p>
-                  <span>{data.DATE1}~{data.DATE2}</span>
-                </div>
-              </SwiperSlide>
-          ))}
-          </Swiper>
-        </div>
-        
-      </div> */}
-    </div>
+    <Router>
+      <div className='Wraper'>
+        <Header CateSelect={CateSelect}></Header>
+        <Routes>
+          <Route path="/" element={<MainPage BannerItem={BannerItem} ContentsRankingItem={ContentsRankingItem} FestivalItem={FestivalItem}/>} />
+          <Route path="/Langking" element={<LangkingPage Item={RankingItem} CateCode={CateCode}/>} />
+          <Route path="/Detail" element={<DetailPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

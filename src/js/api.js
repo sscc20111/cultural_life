@@ -80,6 +80,36 @@ const fetchFestival = async (ServiceKey, Count, Period1, Period2, Category, Regi
     }
 };
 
+const fetchDetail = async (ServiceKey, DATA_ID) => {
+    try {
+        const response = await axios.get(`http://localhost:3002/apiDetail/${ServiceKey}/${DATA_ID}`);
+        console.log(response.data.dbs.db);
+        const event = response.data.dbs.db;
+        const fetchData = {
+                TITLE   : event.prfnm._text,   //제목
+                DATE1    : event.prfpdfrom._text, //날짜(시작)
+                DATE2    : event.prfpdto._text,   //날짜(종료)
+                PLACE   : event.fcltynm._text,   //장소
+                CAST: event.prfcast._text,   //공연출연진
+                CREW: event.prfcrew._text,   //공연제작진
+                RUN_TIME: event.prfruntime._text,   //공연 런타임
+                AGE: event.prfage._text,   //공연 관람 연령
+                PRODUCER_COMPANY: event.entrpsnm._text,   //기획제작사
+                PRODUCER: event.entrpsnmP._text,   //제작사
+                PRICE: event.pcseguidance._text,   //티켓가격
+                MAIN_IMG: event.poster._text,   //포스터
+                CODENAME: event.genrenm._text,   //장르
+                STATUS: event.prfstate._text,   //공연상태
+                INTRODUCE_IMG: event.styurls.styurl,   //소개이미지목록
+                DETAIL_TIME: event.dtguidance._text,   //공연시간
+                TIKET: event.relates.relate,   //예매처목록
+        }; 
+        return fetchData;
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+    }
+};
+
 // const imgResponse = async (img_url) => {
 //     try {
 //         const response = await axios.get(`http://localhost:3002/api/${img_url}`);
@@ -90,4 +120,4 @@ const fetchFestival = async (ServiceKey, Count, Period1, Period2, Category, Regi
 //     }
 // };
 
-export {fetchSeoul, fetchKopis, fetchRanking, fetchFestival}
+export {fetchSeoul, fetchKopis, fetchRanking, fetchFestival, fetchDetail}
