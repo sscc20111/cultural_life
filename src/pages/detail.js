@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import { ServiceKey } from '../js/Option'
 import { fetchDetail } from '../js/api';
+import { Container } from 'react-bootstrap';
 
 const DetailPage = ({}) => {
     const location = useLocation();
@@ -20,7 +21,7 @@ const DetailPage = ({}) => {
     },[]);
 
     return(
-        <div>
+        <Container className='DetailPage'>
             DetailPage test{DATA_ID}
             <div>{DetailItem.TITLE}</div>
             <div>{DetailItem.DATE1}</div>
@@ -39,7 +40,7 @@ const DetailPage = ({}) => {
             {/* <div>{DetailItem.INTRODUCE_IMG}</div> */}
             <div>{DetailItem.DETAIL_TIME}</div>
             {/* <div>{DetailItem.TIKET}</div> */}
-        </div>
+        </Container>
     )
 
 };

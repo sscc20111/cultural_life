@@ -20,7 +20,7 @@ export const Banner = ({ BannerItem }) => {
     // };
 
     return (
-        <div className='banner'>
+        <div className='banner content'>
             <Container className='h-100'>
                 <Swiper
                     slidesPerView={1}

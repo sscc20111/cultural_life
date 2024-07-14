@@ -1,6 +1,14 @@
 .Wraper {font-family: 'Gmarket';}
-.Wraper img {max-width: 100%;max-height: 100%;}
+.Wraper ul {margin-bottom: inherit;padding-left: inherit;list-style-type: none;list-style: none;}
+.Wraper a {text-decoration:inherit; color: inherit;}
+.Wraper img {max-width: 100%; max-height: 100%;}
+.Wraper h5 {margin-bottom:0;}
+.Wraper p {margin-bottom:0;}
 
+.Wraper .content {margin: 0 0 5rem}
+
+
+/*========== header ==========*/
 .Wraper .header {}
 .Wraper .header .headerMenu {height: 100px; display: flex; align-items: center;}
 .Wraper .header .headerMenu h2 {margin: 0 40px 0 0;}
@@ -8,46 +16,87 @@
 .Wraper .header .headerMenu .searchBox svg {color: #000;}
 .Wraper .header .headerMenu .searchBox input {border-radius: 1rem; border: none;}
 .Wraper .header .headerMenu .searchBox button {border-radius: 1rem; border: none;}
-.Wraper .header .headerNavi {}
-.Wraper .header .headerNavi button {font-weight: 600; background-color: #fff; color: #000; border: none;}
 
-
-.Wraper .banner {background: #0000005b; height: 520px;}
-.Wraper .banner .swiper {height: 100%; max-width: 1440px;}
-.Wraper .banner .SliderWrap {display: flex; justify-content: space-around;}
-.Wraper .banner .SliderWrap .imgBox {}
-.Wraper .banner .SliderWrap .desc {display: flex; flex-direction: column; justify-content: center;}
-.Wraper .banner .SliderWrap .desc h4 {margin: 0 0 30px 0; font-size: 35px; font-weight: 600;}
-.Wraper .banner .SliderWrap .desc h4 span {}
-.Wraper .banner .SliderWrap .desc p {margin: 0;}
-.Wraper .banner .SliderWrap .desc .USE_TRGT {margin: 0 0 40px 0;}
-.Wraper .banner .SliderWrap .desc .USE_FEE {}
-.Wraper .banner .SliderWrap .desc .PLACE {}
-.Wraper .banner .SliderWrap .desc .DATE {}
-
-.Wraper .contents {margin: 100px auto 0; width: 100%; max-width: 1200px; }
-
-.Wraper .contents.content01 {display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 20px;}
-.Wraper .contents.content01 .contentBox {height: 100px; display: flex; justify-content: space-between; }
-.Wraper .contents.content01 .contentBox .textBox {}
-.Wraper .contents.content01 .contentBox .textBox h3 {font-size: 20px; font-weight: 600;}
-.Wraper .contents.content01 .contentBox .textBox p {font-size: 14px; margin-bottom: 0.1rem;}
-.Wraper .contents.content01 .contentBox .imgBox {width: 100%; height: 100%; max-width: 160px; position: relative; overflow: hidden;}
-.Wraper .contents.content01 .contentBox .imgBox::after {position: absolute; content: ''; display: block; top: 0; left: 0; width: 100%;height: 100%; background: linear-gradient(90deg, #fff 10%, #fff 25%, #ffffff33 45%, #ffffff00 100%);}
-.Wraper .contents.content01 .contentBox .imgBox img {position: absolute; transform: translate(-50%,-50%); top: 50%;left: 50%; max-width: 120%;max-height: 120%;}
+.Wraper .header nav {height: 40px; width: 100%;display: flex; justify-content: space-evenly; align-items: center;}
+.Wraper .header nav .navBtn {font-weight: 600; background-color: #fff; color: #000; border: none;}
 
 
 
-/* .Wraper .seoulWrap {}
-.Wraper .seoulWrap form {}
-.Wraper .seoulWrap form select {}
-.Wraper .seoulWrap form input {}
-.Wraper .seoulWrap form button {}
-.Wraper .seoulWrap .viewItem {}
-.Wraper .seoulWrap .viewItem .ItemWrap {}
-.Wraper .seoulWrap .viewItem .ItemWrap .imgBox {}
-.Wraper .seoulWrap .viewItem .ItemWrap .imgBox img {max-width: 100%;}
-.Wraper .seoulWrap .viewItem .ItemWrap .desc {} */
+/*========== MainPage ==========*/
+.Wraper .MainPage {}
+
+/* banner */
+.Wraper .MainPage .banner {height: 520px;background: #0000005b;}
+.Wraper .MainPage .banner .swiper {height: 100%; max-width: 1440px;}
+.Wraper .MainPage .banner .SliderWrap {display: flex; justify-content: space-around;}
+.Wraper .MainPage .banner .SliderWrap .imgBox {}
+.Wraper .MainPage .banner .SliderWrap .desc {display: flex; flex-direction: column; justify-content: center;}
+.Wraper .MainPage .banner .SliderWrap .desc h4 {margin: 0 0 30px 0; font-size: 35px; font-weight: 600;}
+.Wraper .MainPage .banner .SliderWrap .desc h4 span {}
+.Wraper .MainPage .banner .SliderWrap .desc p {margin: 0;}
+.Wraper .MainPage .banner .SliderWrap .desc .USE_TRGT {margin: 0 0 40px 0;}
+.Wraper .MainPage .banner .SliderWrap .desc .USE_FEE {}
+.Wraper .MainPage .banner .SliderWrap .desc .PLACE {}
+.Wraper .MainPage .banner .SliderWrap .desc .DATE {}
+
+/* content01 */
+.Wraper .MainPage .contents .content01 {display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 20px;}
+.Wraper .MainPage .contents .content01 .ItemBox {height: 100px; border: 1px solid #e8e8e8; border-radius: 0.8rem; display: flex; justify-content: space-between; align-items: center; overflow: hidden;}
+.Wraper .MainPage .contents .content01 .ItemBox .textBox {margin-left: 3%; max-width: 62%;}
+.Wraper .MainPage .contents .content01 .ItemBox .textBox h3 {font-size: 20px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.Wraper .MainPage .contents .content01 .ItemBox .textBox p {font-size: 14px; margin-bottom: 0.1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.Wraper .MainPage .contents .content01 .ItemBox .imgBox {max-width: 30%; position: relative; overflow: hidden;}
+.Wraper .MainPage .contents .content01 .ItemBox .imgBox img {max-height: inherit;}
+
+/* content02,03 */
+.Wraper .MainPage .contents .content:not(.content01) h3 {text-align: center; font-weight: 600;}
+.Wraper .MainPage .contents .content .swiper .imgBox {margin: 0 0 1rem; aspect-ratio:0.70; border-radius: 1rem; overflow: hidden;}
+.Wraper .MainPage .contents .content .swiper .imgBox img {width: 100%; height: 100%; object-fit: cover;}
+.Wraper .MainPage .contents .content .swiper .textBox {margin: 0 0.5rem;}
+.Wraper .MainPage .contents .content .swiper .textBox h4 {font-size: 1rem; font-weight: 400;}
+.Wraper .MainPage .contents .content .swiper .textBox p {font-size: 0.9rem; font-weight: 400; margin-bottom: 0;}
+.Wraper .MainPage .contents .content .swiper .textBox span {font-size: 0.8rem; font-weight: 200;}
+
+/* content02 nav */
+.Wraper .MainPage .contents .content02 nav {margin: 0 0 1rem; gap: 0.8rem; display: flex; justify-content: space-evenly; justify-content: center;}
+.Wraper .MainPage .contents .content02 nav button {padding: 0.7rem 0.9rem 0.4rem; border-radius: 2.2rem; background-color: #fff; border: 1px solid #e8e8e8;}
+.Wraper .MainPage .contents .content02 nav button.active {background-color: #000; color: #fff;}
+
+
+
+/*========== LangkingPage ==========*/
+.Wraper .RangkingPage {}
+
+.Wraper .RangkingPage .content01 {align-items: flex-start;}
+.Wraper .RangkingPage .content01 .contentBox {width: calc(100%/3); padding: 1rem; position: relative;}
+.Wraper .RangkingPage .content01 .contentBox .iconBox {position: absolute;}
+.Wraper .RangkingPage .content01 .contentBox .iconBox svg {font-size: 2rem; position: absolute; top: 0;left: 0; transform: translate(-50%,-50%); color: #666;}
+.Wraper .RangkingPage .content01 .contentBox:first-child .iconBox svg {color: #c775b9;}
+.Wraper .RangkingPage .content01 .contentBox .iconBox span {position: absolute; top: 0;left: 0; transform: translate(-50%,-50%); color: #fff;}
+.Wraper .RangkingPage .content01 .contentBox .imgBox {margin: 0 0 1.5rem; aspect-ratio: 0.75; border-radius: 1rem; border: 1px solid #e8e8e8; overflow: hidden;}
+.Wraper .RangkingPage .content01 .contentBox .imgBox img {width: 100%; height: 100%; object-fit: cover;}
+.Wraper .RangkingPage .content01 .contentBox .textBox {padding: 0 0.8rem;}
+.Wraper .RangkingPage .content01 .contentBox .textBox h4 {margin: 0 0 0.5rem; font-size: 1.2rem;}
+.Wraper .RangkingPage .content01 .contentBox .textBox p {margin: 0; font-size: 0.9rem;}
+.Wraper .RangkingPage .content01 .contentBox .textBox span {margin: 0 0 0.5rem; font-size: 0.8rem; color: #999;}
+
+.Wraper .RangkingPage .content02 {}
+.Wraper .RangkingPage .content02 ul {}
+.Wraper .RangkingPage .content02 ul li a {width: 100%; height: 9rem; display: flex; align-items: center; border-bottom: 1px solid #eee;}
+.Wraper .RangkingPage .content02 ul li .lankingBox {display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0; gap: 0; width: 5rem; height: 8rem;}
+.Wraper .RangkingPage .content02 ul li .lankingBox span {font-size: 1.5rem; font-weight: 600;}
+.Wraper .RangkingPage .content02 ul li .descBox {display: flex; flex-direction: row; align-items: center; justify-content: space-around; padding: 0; gap: 1.2rem; cursor: pointer; height: 100%; flex: 1 1;}
+.Wraper .RangkingPage .content02 ul li .descBox .imgBox {box-sizing: border-box; position: relative; width: 5rem; height: 7rem; border-radius: .4rem; background: linear-gradient(0deg, rgba(0, 0, 0, .04), rgba(0, 0, 0, .04)); overflow: hidden;}
+.Wraper .RangkingPage .content02 ul li .descBox .imgBox img {width: 100%; height: 100%; object-fit: cover;}
+.Wraper .RangkingPage .content02 ul li .descBox .textBox {display: flex; flex-direction: row; align-items: center; justify-content: space-between; padding: 0; margin: 0; gap: 8px; list-style-type: none; position: relative; flex: 1 1; height: 100%;}
+.Wraper .RangkingPage .content02 ul li .descBox .textBox h5 {width: 20rem; font-size: 1.1rem;}
+.Wraper .RangkingPage .content02 ul li .descBox .textBox p {width: 15rem; font-size: 0.8rem;}
+
+
+
+
+
+
 
 
 

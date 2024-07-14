@@ -2,18 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, FreeMode } from 'swiper/modules';
 import { Link } from 'react-router-dom';
+import { Container, Stack } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 
 const LangkingPage = ({Item, CateCode}) => {
-    // const [CateCode,setCateCode] = useState('AAAA');
-    // const CateSelect = (Cate) => {//상위 component_navi에서 선택한 카테고리 코드 받아옴
-    //     setCateCode(Cate)
-    // };
     const [TopLangk,setTopLangk] = useState([]);
     const [LowLangk,setLowLangk] = useState([]);
     const CodeIndex = Item.findIndex(item => item.code === CateCode);//받아온 code에 대응하는 배열로 변경
 
     const SliceLangk = () => {
-        // console.log('test');
         const sliceTopItem = Item[CodeIndex].data.slice(0,3)
         const sliceLowItem = Item[CodeIndex].data.slice(3)
         setTopLangk(sliceTopItem)
@@ -21,56 +19,64 @@ const LangkingPage = ({Item, CateCode}) => {
     };
 
     useEffect(()=>{
-        // console.log(Item);
         if(Item.length>0){
             SliceLangk()
         }
-    },[Item]);
-    useEffect(()=>{
-        // console.log(CateCode);
-        if(Item.length>0){
-            SliceLangk()
-        }
-    },[CateCode]);
-    // useEffect(()=>{
-    //     console.log(TopLangk);
-    //     console.log(LowLangk);
-    // },[TopLangk]);
+    },[Item,CateCode]);
     return(
-        <Swiper slidesPerView={3} spaceBetween={30} freeMode={true} pagination={{ clickable: true, }} modules={[FreeMode, Pagination]} className="mySwiper" >
-            {Item.length > 0 ? (
-                TopLangk.map((item, index) => (
-                    <SwiperSlide key={index}>
-                        <Link className='ItemWrap' to="/Detail" state= {item.DATA_ID} onClick={()=>console.log(item.DATA_ID)}>
+        <Container className='RangkingPage'>
+            <Stack direction="horizontal" className="content content01" >
+                {Item.length > 0 ? (
+                    TopLangk.map((item, index) => (
+                        <Link key={index} className='contentBox' to="/Detail" state= {item.DATA_ID}>
+                            <div className='iconBox'>
+                                <FontAwesomeIcon icon={faBookmark} />
+                                <span>{index}</span>
+                            </div>
                             <div className='imgBox'>
                                 <img src={item.MAIN_IMG} alt={item.TITLE}></img>
                             </div>
-                            <div className='desc'>
+                            <div className='textBox'>
                                 <h4>{item.TITLE}</h4>
                                 <p>{item.PLACE}<span>({item.AREA})</span></p>
-                                <span>{item.DATE1}~{item.DATE2}</span>
+                                <span>{item.DATE1}</span>
                             </div>
                         </Link>
-                    </SwiperSlide>
-                ))
-            ) : (
-                <SwiperSlide>
+                    ))
+                ) : (
                     <div>Loading...</div>
-                </SwiperSlide>
-            )}
-            <div className='contentBox'>
+                )}
+            </Stack>
+            <div className='content content02'>
                 <ul>
                     {Item.length > 0 ? (LowLangk.map((item, index) => (
-                        <li key={index}>{item.TITLE}</li>
+                        <li key={index}>
+                            <Link to="/Detail" state= {item.DATA_ID}>
+                                <div className='lankingBox'>
+                                    <span>{index+4}</span>
+                                </div>
+                                <div className='descBox'>
+                                    <div className='imgBox'>
+                                        <img src={item.MAIN_IMG} alt={item.TITLE}></img>
+                                    </div>
+                                    <div className='textBox'>
+                                        <h5>{item.TITLE}</h5>
+                                        <p>{item.PLACE}</p>
+                                        <p>{item.DATE1}</p>
+                                        <span>test</span>
+                                    </div>
+                                </div>
+                            </Link>
+                        </li>
                     ))
                 ) : (
                     <div>Loading...</div>
                 )}
                 </ul>
             </div>
-        </Swiper>
+        </Container>
     )
 
 };
 
-export default LangkingPage
+export default LangkingPage;

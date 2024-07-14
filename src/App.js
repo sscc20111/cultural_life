@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { format, addDays } from 'date-fns';
 
@@ -11,12 +10,12 @@ import MainPage from './pages/main';
 import LangkingPage from './pages/ranking';
 import DetailPage from './pages/detail';
 
-import './App.css';
-import './style.css';
+// import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './style.css';
 
 function App() {
   // const [SeoulData, setSeoulData] = useState([]);
@@ -106,7 +105,7 @@ function App() {
 
   const CateSelect = (CateCode) => {//상위 component_navi에서 선택한 카테고리 코드 받아옴
     setCateCode(CateCode);
-    // console.log(CateCode);
+    console.log(CateCode);
 };
 
   return (
