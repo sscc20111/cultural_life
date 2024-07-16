@@ -117,7 +117,10 @@
 .Wraper .DetailPage .productWrapper .productMain .productMainBody {}
 
 .Wraper .DetailPage .productWrapper .productSide {margin: 5rem 0 0; max-width: 30%; width: 100%;}
-.Wraper .DetailPage .productWrapper .productSide .calendar {position: sticky; top: 1rem;}
+.Wraper .DetailPage .productWrapper .productSide .calendarWrap {position: sticky; top: 1rem;}
+.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarHeader {text-align: center;}
+.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody {display: grid;grid-template-columns: repeat(7, 1fr);grid-template-rows: repeat(6, minmax(40px, auto));}
+.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li {}
 
 
 

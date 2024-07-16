@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 
 import { ServiceKey } from '../js/Option'
 import { fetchDetail } from '../js/api';
-import { Container } from 'react-bootstrap';
+import Calendar from '../components/calendar';
 
 const DetailPage = ({}) => {
     const location = useLocation();
@@ -94,7 +95,7 @@ const DetailPage = ({}) => {
                     </div>
                 </div>
                 <div className='productSide'>
-                    <div className='calendar'>calendar</div>
+                    <Calendar></Calendar>
                     {/* <div>{DetailItem.TIKET}</div> */}
                 </div>
             </div>
