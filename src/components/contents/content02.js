@@ -30,7 +30,7 @@ const Content02 = ({ Item }) => {
                 {Item.length > 0 ? (
                     Item[CodeIndex].data.map((item, index) => (
                         <SwiperSlide key={index}>
-                            <Link className='ItemBox' to="/Detail" state= {item.DATA_ID}>
+                            <Link className='ItemBox' to="/Detail" state= {{DATA_ID:item.DATA_ID, DATA_LANK:index+1}}>
                                 <div className='imgBox'>
                                     <img src={item.MAIN_IMG} alt={item.TITLE}></img>
                                 </div>

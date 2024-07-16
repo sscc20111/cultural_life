@@ -105,7 +105,7 @@ function App() {
 
   const CateSelect = (CateCode) => {//상위 component_navi에서 선택한 카테고리 코드 받아옴
     setCateCode(CateCode);
-    console.log(CateCode);
+    // console.log(CateCode);
 };
 
   return (

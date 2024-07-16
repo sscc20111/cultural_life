@@ -94,7 +94,30 @@
 
 
 
+/*========== DetailPage ==========*/
+.Wraper .DetailPage {}
 
+.Wraper .DetailPage .productWrapper {display: flex; justify-content: space-between;}
+
+.Wraper .DetailPage .productWrapper .productMain {margin: 2rem 0 0; max-width: 70%;}
+.Wraper .DetailPage .productWrapper .productMain .productMainHeader {margin: 0 0 5rem;}
+.Wraper .DetailPage .productWrapper .productMain .productMainHeader .summary {}
+.Wraper .DetailPage .productWrapper .productMain .productMainHeader .summary .summaryHeader {margin: 0 0 1rem;}
+.Wraper .DetailPage .productWrapper .productMain .productMainHeader .summary .summaryHeader h3 {font-size: 1.75rem; font-weight: 800;}
+.Wraper .DetailPage .productWrapper .productMain .productMainHeader .summary .summaryHeader span {font-size: 0.9rem; color: #999;}
+
+.Wraper .DetailPage .productWrapper .productMain .productMainHeader .summary .summaryBody {display: flex;}
+.Wraper .DetailPage .productWrapper .productMain .productMainHeader .summary .summaryBody .imgBox {max-width: 30%;}
+.Wraper .DetailPage .productWrapper .productMain .productMainHeader .summary .summaryBody .imgBox img {}
+.Wraper .DetailPage .productWrapper .productMain .productMainHeader .summary .summaryBody .textBox {max-width: 70%; padding: 1rem 0 0 3rem;}
+.Wraper .DetailPage .productWrapper .productMain .productMainHeader .summary .summaryBody .textBox li {margin: 0 0 1rem; display: flex; justify-content: space-between;}
+.Wraper .DetailPage .productWrapper .productMain .productMainHeader .summary .summaryBody .textBox li span {width: 10rem;}
+.Wraper .DetailPage .productWrapper .productMain .productMainHeader .summary .summaryBody .textBox li p {width: calc(100% - 12rem);}
+
+.Wraper .DetailPage .productWrapper .productMain .productMainBody {}
+
+.Wraper .DetailPage .productWrapper .productSide {margin: 5rem 0 0; max-width: 30%; width: 100%;}
+.Wraper .DetailPage .productWrapper .productSide .calendar {position: sticky; top: 1rem;}
 
 
 

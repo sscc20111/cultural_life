@@ -28,7 +28,7 @@ const LangkingPage = ({Item, CateCode}) => {
             <Stack direction="horizontal" className="content content01" >
                 {Item.length > 0 ? (
                     TopLangk.map((item, index) => (
-                        <Link key={index} className='contentBox' to="/Detail" state= {item.DATA_ID}>
+                        <Link key={index} className='contentBox' to="/Detail" state= {{DATA_ID:item.DATA_ID, DATA_LANK:index+1}}>
                             <div className='iconBox'>
                                 <FontAwesomeIcon icon={faBookmark} />
                                 <span>{index}</span>
@@ -51,7 +51,7 @@ const LangkingPage = ({Item, CateCode}) => {
                 <ul>
                     {Item.length > 0 ? (LowLangk.map((item, index) => (
                         <li key={index}>
-                            <Link to="/Detail" state= {item.DATA_ID}>
+                            <Link to="/Detail" state= {{DATA_ID:item.DATA_ID, DATA_LANK:index+4}}>
                                 <div className='lankingBox'>
                                     <span>{index+4}</span>
                                 </div>
@@ -79,4 +79,4 @@ const LangkingPage = ({Item, CateCode}) => {
 
 };
 
-export default LangkingPage;
+export default LangkingPage

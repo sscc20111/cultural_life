@@ -83,7 +83,7 @@ const fetchFestival = async (ServiceKey, Count, Period1, Period2, Category, Regi
 const fetchDetail = async (ServiceKey, DATA_ID) => {
     try {
         const response = await axios.get(`http://localhost:3002/apiDetail/${ServiceKey}/${DATA_ID}`);
-        console.log(response.data.dbs.db);
+        // console.log(response.data.dbs.db);
         const event = response.data.dbs.db;
         const fetchData = {
                 TITLE   : event.prfnm._text,   //제목

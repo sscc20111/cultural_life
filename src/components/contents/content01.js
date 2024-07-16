@@ -11,7 +11,7 @@ const Content01 = ({ Item }) => {
         <div className='content content01'>
             {Array.from({ length: 9 }, (_, index) => (
                 Item[index] ? (
-                    <Link className='ItemBox' to="/Detail" state= {Item[index].data[0].DATA_ID}  key={index} >
+                    <Link className='ItemBox' to="/Detail" state= {{DATA_ID:Item[index].data[0].DATA_ID, DATA_LANK:1}}  key={index} >
 
                         <div className='textBox'>
                             <h3>{Item[index].data[0].TITLE}</h3>
