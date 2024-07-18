@@ -95,7 +95,7 @@ const DetailPage = ({}) => {
                     </div>
                 </div>
                 <div className='productSide'>
-                    <Calendar></Calendar>
+                    <Calendar DATE1={DetailItem.DATE1} DATE2={DetailItem.DATE2}></Calendar>
                     {/* <div>{DetailItem.TIKET}</div> */}
                 </div>
             </div>
