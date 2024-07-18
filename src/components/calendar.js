@@ -4,69 +4,39 @@ import { parse, format } from 'date-fns';
 
 const Calendar = ({DATE1,DATE2}) => {
     const date = new Date();
-    
     const year = date.getFullYear();
     const [month, setmonth] = useState(date.getMonth() + 1)
+    const DayOfTheWeek = ['일', '월', '화', '수', '목', '금', '토'];
+    
 
     const ToDay = format(date, 'yyyyMMdd');
     const thisMonth = new Date(year, month, 0).getDate();//이번달의 일수
     const lastMonth = new Date(year, month-1, 0).getDate();//지난달의 일수
     const lastDay = new Date(year, month - 2, lastMonth).getDay() + 1; // 지난달의 마지막 요일
-    const replacedLastDay = (lastDay === 7) ? 0 : lastDay; // 7이면 0으로 변환
+    const replacedLastDay = (lastDay === 7) ? 0 : lastDay; // (지난달의 마지막 요일) => 7이면 0으로 변환
 
-    const DayOfTheWeek = ['일', '월', '화', '수', '목', '금', '토'];
 
-    const formatDateString = (DATE) => {
-        try {
-            const parsedDate = parse(DATE, 'yyyy.MM.dd', new Date());// 'yyyy. MM. dd' 형태의 문자열을 Date 객체로 변환
-            return format(parsedDate, 'yyyyMMdd');// Date 객체를 'yyyyMMdd' 형태의 문자열로 변환
-        } catch (error) {
-            console.error('Invalid date format:', error);
-            return '';
-        }
+    const formatDateString = (DATE) => {// Date 객체를 'yyyyMMdd' 형태의 문자열로 변환
+        const parsedDate = parse(DATE, 'yyyy.MM.dd', new Date());// 'yyyy.MM.dd' 형태의 문자열을 Date 객체로 변환
+        return format(parsedDate, 'yyyyMMdd');
     };
-    const formatIndexString = (DATE) => {
-        try {
-            if(DATE>9){//index가 두자리
-                const parsedDate = parse(`${month}${DATE}`, 'Mdd', new Date())
-                return format(parsedDate, 'yyyyMMdd');// Date 객체를 'yyyyMMdd' 형태의 문자열로 변환
-            }else{//index가 한자리
-                const parsedDate = parse(`${month}${DATE}`, 'Md', new Date())
-                return format(parsedDate, 'yyyyMMdd');// Date 객체를 'yyyyMMdd' 형태의 문자열로 변환
-            }
-        } catch (error) {
-            console.error('Invalid date format:', error);
-            return '';
-        }
-    };
-    const formatIndexString2 = (DATE) => {
-        try {
-            if(DATE>9){//index가 두자리
-                const parsedDate = parse(`${month-1}${DATE}`, 'Mdd', new Date())
-                return format(parsedDate, 'yyyyMMdd');// Date 객체를 'yyyyMMdd' 형태의 문자열로 변환
-            }else{//index가 한자리
-                const parsedDate = parse(`${month-1}${DATE}`, 'Md', new Date())
-                return format(parsedDate, 'yyyyMMdd');// Date 객체를 'yyyyMMdd' 형태의 문자열로 변환
-            }
-        } catch (error) {
-            console.error('Invalid date format:', error);
-            return '';
-        }
-    };
-    const formatIndexString3 = (DATE) => {
-        try {
-            if(DATE>9){//index가 두자리
-                const parsedDate = parse(`${month+1}${DATE}`, 'Mdd', new Date())
-                return format(parsedDate, 'yyyyMMdd');// Date 객체를 'yyyyMMdd' 형태의 문자열로 변환
-            }else{//index가 한자리
-                const parsedDate = parse(`${month+1}${DATE}`, 'Md', new Date())
-                return format(parsedDate, 'yyyyMMdd');// Date 객체를 'yyyyMMdd' 형태의 문자열로 변환
-            }
-        } catch (error) {
-            console.error('Invalid date format:', error);
-            return '';
-        }
-    };
+    const parsingDate = (DATE) => {//'yyyyMMdd' 형태에서 day의 index값이 한 자리인 경우 오류 발생 회피
+        const parsedDate = parse(`${DATE}`, 'd', new Date())
+        return format(parsedDate, 'dd')
+    }
+
+    const formatIndexString = (DATE, point) => {// 
+        let adjustedMonth = month;
+        if (point === 'prev') adjustedMonth = month - 1
+        if (point === 'this') adjustedMonth = month
+        if (point === 'next') adjustedMonth = month + 1
+        const parsedDate = parse(`${adjustedMonth}${parsingDate(DATE)}`, 'Mdd', new Date())
+        return format(parsedDate, 'yyyyMMdd');
+    }
+
+    const isActive = (index, point) => {//DATE1, DATE2 범위 판별
+        return formatDateString(DATE1) <= formatIndexString(index, point) && formatDateString(DATE2) >= formatIndexString(index, point)
+    }
 
 
 
@@ -79,44 +49,32 @@ const Calendar = ({DATE1,DATE2}) => {
                 <div>{year}. {month}</div>
                 <button onClick={() => setmonth(month+1)}>&#62;</button>
             </div>
-            <ul className='calendarBody'>
-                {/* 요일 */}
-                {DayOfTheWeek.map((item, index) => (
-                    <li key={index} className='style1'>{item}</li>
-                ))}
-                {/* 지난달의 남은 일수 */}
-                {DATE1 || DATE2 ? (
-                    Array.from({ length: replacedLastDay}, (_, index) => (
-                        (formatDateString(DATE1) <= formatIndexString2(lastMonth - replacedLastDay + index + 1) && formatDateString(DATE2) >= formatIndexString2(lastMonth - replacedLastDay + index + 1)) ? (
-                            <li key={index} className='style2 active'>{lastMonth - replacedLastDay + index + 1}</li>
-                        ) : (
-                            <li key={index} className='style2'>{lastMonth - replacedLastDay + index + 1}</li>
+            {DATE1 && DATE2 ? (
+                <ul className='calendarBody'>
+                    {DayOfTheWeek.map((item, index) => (/* 요일 */
+                        <li key={index} className='style1'>{item}</li>
+                    ))}
+                    {Array.from({ length: replacedLastDay}, (_, index) => {/* 지난달 노출 */
+                        const Index = lastMonth - replacedLastDay + index + 1;
+                        
+                        return (
+                            <li key={index} className={(isActive(Index, 'prev')) ? ('style2'):('style2 disabled')}>{Index}</li>
                         )
-                    ))
-                ):(null)}
-                {/* 이번달 일수 */}
-                {DATE1 || DATE2 ? (
-                    Array.from({ length: thisMonth}, (_, index) => (
-                        (formatDateString(DATE1) <= formatIndexString(index + 1) && formatDateString(DATE2) >= formatIndexString(index + 1)) ? (
-                            <li key={index} className={ToDay === formatIndexString(index + 1) ? ('style3 active today'):('style3 active')}>{index + 1}</li>
-                        ) : (
-                            <li key={index} className={ToDay === formatIndexString(index + 1) ? ('style3 today'):('style3')}>{index + 1}</li>
-                        )
-                    ))
-                ):(null)}
-                {/* 다음달 일수 */}
-                {DATE1 || DATE2 ? (
-                    Array.from({ length: 35 - thisMonth - replacedLastDay}, (_, index) => (
-                        (formatDateString(DATE1) <= formatIndexString3(index + 1) && formatDateString(DATE2) >= formatIndexString3(index + 1)) ? (
-                            <li key={index} className='style2 active'>{index + 1}</li>
-                        ) : (
-                            <li key={index} className='style2'>{index + 1}</li>
-                        )
-                    ))
-                ):(null)}
-                
+                    })}
+                    {Array.from({ length: thisMonth}, (_, index) => {/* 이번달 노출 */
+                        let ClassName = 'style3 ';
+                        if(!isActive(index + 1, 'this')) ClassName += 'disabled '//DATE1, DATE2 범위 판별
+                        if(ToDay === formatIndexString(index + 1, 'this'))  ClassName += 'today'//today 판별
 
-            </ul>
+                        return (
+                            <li key={index} className={ClassName}>{index + 1}</li>
+                        )
+                    })}
+                    {Array.from({ length: 35 - thisMonth - replacedLastDay}, (_, index) => (/* 다음달 노출 */
+                        <li key={index} className={(isActive(index + 1, 'next')) ? ('style2'):('style2 disabled')}>{index + 1}</li>
+                    ))}
+                </ul>
+            ):(null)}
         </div>
     )
 }

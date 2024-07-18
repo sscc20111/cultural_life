@@ -124,9 +124,11 @@
 .Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody {display: grid;grid-template-columns: repeat(7, 1fr);grid-template-rows: repeat(7, minmax(40px, auto));}
 .Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li {position: relative; display: flex; align-items: center; justify-content: center;}
 .Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li.style1 {}
-.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li.style2 {color: #999;}
+.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li.style2 {}
 .Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li.style3 {}
-.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li.active {background-color: #c775b9;}
+.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li:nth-child(7n+1) {color: #ff322e;}
+.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li:nth-child(7n+1).disabled {color: #f8c4c4;}
+.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li.disabled {color: #ccc;}
 .Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li.today::after {position: absolute;content: ''; top: 45%;left: 50%; width: 70%; height: 80%; transform: translate(-50%,-50%); border-radius: 50%; background-color: #00000059;}
 
 
