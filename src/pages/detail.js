@@ -22,7 +22,8 @@ const DetailPage = ({}) => {
         DetailResponse();
     },[]);
     useEffect(()=>{
-        // console.log(DetailItem.INTRODUCE_IMG._text);
+        // console.log(DetailItem.TIKET.relateurl._text)
+        // console.log(DetailItem.TIKET.relatenm._text)
     },[DetailItem]);
 
     return(
@@ -95,8 +96,25 @@ const DetailPage = ({}) => {
                     </div>
                 </div>
                 <div className='productSide'>
-                    <Calendar DATE1={DetailItem.DATE1} DATE2={DetailItem.DATE2}></Calendar>
-                    {/* <div>{DetailItem.TIKET}</div> */}
+                    <div className='sideWrap'>
+                        <Calendar DATE1={DetailItem.DATE1} DATE2={DetailItem.DATE2}></Calendar>
+                        {DetailItem ? (
+                            Array.isArray(DetailItem.TIKET) ? (
+                                DetailItem.TIKET.map((item, index) => (
+                                    <div className='tiketBox' key={index}>
+                                        <a href={item.relateurl._text} target="_blank">{item.relatenm._text}</a>
+                                    </div>
+                                ))
+                            ):(
+                                DetailItem.TIKET ? (
+                                    <div className='tiketBox'>
+                                        <a href={DetailItem.TIKET.relateurl._text} target="_blank">{DetailItem.TIKET.relatenm._text}</a>
+                                    </div>
+                                ) : null
+                            )
+                        ):null
+                        }
+                    </div>
                 </div>
             </div>
 

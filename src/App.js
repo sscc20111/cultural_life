@@ -9,6 +9,7 @@ import { Header } from './components/header'
 import MainPage from './pages/main';
 import LangkingPage from './pages/ranking';
 import DetailPage from './pages/detail';
+import ListPage from './pages/list';
 
 // import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,24 +19,17 @@ import 'swiper/css/navigation';
 import './style.css';
 
 function App() {
-  // const [SeoulData, setSeoulData] = useState([]);
-  // const [KopisData, setKopisData] = useState([]);
-  const [searchText, setSearchText] = useState('');
-  const [searchText2, setSearchText2] = useState('%20');
-  const [selectedOption, setSelectedOption] = useState('%20');
-  // const form = useRef();
-  // const form2 = useRef();
-
   const [BannerItem,setBannerItem] = useState([]);
   const [RankingItem,setRankingItem] = useState([]);
   const [ContentsRankingItem,setContentsRankingItem] = useState([]);
   const [FestivalItem,setFestivalItem] = useState([]);
+  const [CateCode,setCateCode] = useState('AAAA');
   
 
   const bannerData = async () => { //openapi.seoul에 카테고리별 이미지 1개씩 요청
     for (const options of SeoulOption) {
       try {
-        const data = await fetchSeoul(options, searchText, 1);
+        const data = await fetchSeoul(options, '', 1);
         if (data.length > 0) {
           setBannerItem(prevData => [...prevData, ...data]);
         } else {
@@ -46,6 +40,7 @@ function App() {
       }
     }
   };
+
   const rangkingData = async () => { //kopis에 카테고리별 랭킹10개씩 요청
     const today = new Date();
     const startDate = format(today, 'yyyyMMdd');
@@ -67,28 +62,12 @@ function App() {
     }
   };
   
-  // const SeoulResponse = () => {//openapi.seoul에 요청
-  //   fetchSeoul(selectedOption, searchText, 10)
-  //   .then(data => setSeoulData(data))
-  //   .catch(error => console.error('Error fetching data:', error));
-  // };
-
-  // const KopisResponse = () => {//kopis에 장르별정보 요청
-  //   const today = new Date();
-  //   const startDate = format(today, 'yyyyMMdd');
-  //   const endDate = format(addDays(today, 30), 'yyyyMMdd'); // 오늘부터 10일 후
-
-  //   fetchKopis(ServiceKey.KPOPS, 10, startDate, endDate, '%20', '%20', searchText2)
-  //   .then(data => setKopisData(data))
-  //   .catch(error => console.error('Error fetching data:', error));
-  // };
-
   const FestivalResponse = () => {//kopis에 축제정보 요청
     const today = new Date();
     const startDate = format(today, 'yyyyMMdd');
     const endDate = format(addDays(today, 10), 'yyyyMMdd'); // 오늘부터 10일 후
 
-    fetchFestival(ServiceKey.KPOPS, 10, startDate, endDate, '%20', '%20', searchText2)
+    fetchFestival(ServiceKey.KPOPS, 10, startDate, endDate)
     .then(data => setFestivalItem(data))
     .catch(error => console.error('Error fetching data:', error));
   };
@@ -97,16 +76,12 @@ function App() {
     bannerData();
     rangkingData()
     FestivalResponse()
-    // SeoulResponse()
-    // KopisResponse()
   }, []);
 
-  const [CateCode,setCateCode] = useState('AAAA');
 
   const CateSelect = (CateCode) => {//상위 component_navi에서 선택한 카테고리 코드 받아옴
     setCateCode(CateCode);
-    // console.log(CateCode);
-};
+  };
 
   return (
     <Router>
@@ -116,6 +91,7 @@ function App() {
           <Route path="/" element={<MainPage BannerItem={BannerItem} ContentsRankingItem={ContentsRankingItem} FestivalItem={FestivalItem}/>} />
           <Route path="/Langking" element={<LangkingPage Item={RankingItem} CateCode={CateCode}/>} />
           <Route path="/Detail" element={<DetailPage />} />
+          <Route path="/List" element={<ListPage />} />
         </Routes>
       </div>
     </Router>

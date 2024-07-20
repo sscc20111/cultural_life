@@ -117,23 +117,34 @@
 .Wraper .DetailPage .productWrapper .productMain .productMainBody {}
 
 .Wraper .DetailPage .productWrapper .productSide {margin: 5rem 0 0; max-width: 30%; width: 100%;}
-.Wraper .DetailPage .productWrapper .productSide .calendarWrap {position: sticky; top: 1rem;}
-.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarHeader {display: flex; text-align: center;}
-.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarHeader button {}
-.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarHeader div {}
-.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody {display: grid;grid-template-columns: repeat(7, 1fr);grid-template-rows: repeat(7, minmax(40px, auto));}
-.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li {position: relative; display: flex; align-items: center; justify-content: center;}
-.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li.style1 {}
-.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li.style2 {}
-.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li.style3 {}
-.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li:nth-child(7n+1) {color: #ff322e;}
-.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li:nth-child(7n+1).disabled {color: #f8c4c4;}
-.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li.disabled {color: #ccc;}
-.Wraper .DetailPage .productWrapper .productSide .calendarWrap .calendarBody li.today::after {position: absolute;content: ''; top: 45%;left: 50%; width: 70%; height: 80%; transform: translate(-50%,-50%); border-radius: 50%; background-color: #00000059;}
+.Wraper .DetailPage .productWrapper .productSide .sideWrap {position: sticky; top: 1rem;}
+.Wraper .DetailPage .productWrapper .productSide .sideWrap .calendarWrap {}
+.Wraper .DetailPage .productWrapper .productSide .sideWrap .calendarWrap .calendarHeader {display: flex; text-align: center;}
+.Wraper .DetailPage .productWrapper .productSide .sideWrap .calendarWrap .calendarHeader button {}
+.Wraper .DetailPage .productWrapper .productSide .sideWrap .calendarWrap .calendarHeader div {}
+.Wraper .DetailPage .productWrapper .productSide .sideWrap .calendarWrap .calendarBody {display: grid;grid-template-columns: repeat(7, 1fr);grid-template-rows: repeat(7, minmax(40px, auto));}
+.Wraper .DetailPage .productWrapper .productSide .sideWrap .calendarWrap .calendarBody li {position: relative; display: flex; align-items: center; justify-content: center;}
+.Wraper .DetailPage .productWrapper .productSide .sideWrap .calendarWrap .calendarBody li.style1 {}
+.Wraper .DetailPage .productWrapper .productSide .sideWrap .calendarWrap .calendarBody li.style2 {}
+.Wraper .DetailPage .productWrapper .productSide .sideWrap .calendarWrap .calendarBody li.style3 {}
+.Wraper .DetailPage .productWrapper .productSide .sideWrap .calendarWrap .calendarBody li:nth-child(7n+1) {color: #ff322e;}
+.Wraper .DetailPage .productWrapper .productSide .sideWrap .calendarWrap .calendarBody li:nth-child(7n+1).disabled {color: #f8c4c4;}
+.Wraper .DetailPage .productWrapper .productSide .sideWrap .calendarWrap .calendarBody li.disabled {color: #ccc;}
+.Wraper .DetailPage .productWrapper .productSide .sideWrap .calendarWrap .calendarBody li.today::after {position: absolute;content: ''; top: 45%;left: 50%; width: 70%; height: 80%; transform: translate(-50%,-50%); border-radius: 50%; background-color: #00000059;}
 
 
 
-
+/*========== ListPage ==========*/
+.Wraper .ListPage {}
+.Wraper .ListPage ul {gap: 1rem; padding: initial; display: flex; flex-wrap: wrap; justify-content: flex-start;}
+.Wraper .ListPage ul .listItem {width: calc((100% / 4) - (3rem / 4));}
+.Wraper .ListPage ul .listItem .imgBox {margin: 0 0 1rem; aspect-ratio:0.70; border-radius: 1rem; overflow: hidden;}
+.Wraper .ListPage ul .listItem .imgBox img {width: 100%; height: 100%; object-fit: cover;}
+.Wraper .ListPage ul .listItem .textBox {}
+.Wraper .ListPage ul .listItem .textBox h4 {}
+.Wraper .ListPage ul .listItem .textBox h4 span {}
+.Wraper .ListPage ul .listItem .textBox p {}
+.Wraper .ListPage ul .listItem .textBox span {}
 
 
 

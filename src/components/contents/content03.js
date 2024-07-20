@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 
 const Content03 = ({ Item }) => {
+    console.log()
 
     return(
         <div className='content content03'>
@@ -15,7 +16,7 @@ const Content03 = ({ Item }) => {
             <Swiper slidesPerView={5} spaceBetween={30} freeMode={true} pagination={{ clickable: true, }} modules={[FreeMode, Pagination]} className="mySwiper" >
                 {Item.map((item, index) => (
                     <SwiperSlide key={index}>
-                        <Link className='ItemBox' to="/Detail" state= {item.DATA_ID}>
+                        <Link className='ItemBox' to="/Detail" state= {{DATA_ID:item.DATA_ID, DATA_LANK:index+1}}>
                             <div className='imgBox'>
                                 <img src={item.MAIN_IMG} alt={item.TITLE}></img>
                             </div>
@@ -24,6 +25,7 @@ const Content03 = ({ Item }) => {
                                 <p>{item.PLACE}</p>
                                 <span>{item.DATE1}~{item.DATE2}</span>
                                 <span>({item.CODENAME})</span>
+                                <span>({item.DATA_ID})</span>
                             </div>
                         </Link>
                     </SwiperSlide>

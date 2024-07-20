@@ -19,18 +19,30 @@ const fetchSeoul = async (Option, searchText, Count) => {
     }
 };
 
-const fetchKopis = async (ServiceKey, Count, Period1, Period2, Category, Region, Title) => {
+const fetchKopis = async (ServiceKey, Page, Count, Period1, Period2, Category, Region, Title) => {
     try {
-        const response = await axios.get(`http://localhost:3002/api/${ServiceKey}/${Count}/${Period1}/${Period2}/${Category}/${Region}/${Title}`);
-        const fetchData = response.data.dbs.db.map((event) => ({
-            TITLE    : event.prfnm._text,     //제목
-            CODENAME : event.genrenm._text,   //분류
-            DATE1    : event.prfpdfrom._text, //날짜(시작)
-            DATE2    : event.prfpdto._text,   //날짜(종료)
-            PLACE    : event.fcltynm._text,   //장소
-            MAIN_IMG : event.poster._text,    //포스터
-            DATA_ID: event.mt20id._text,   //공연 ID
-        })); 
+        const response = await axios.get(`http://localhost:3002/api/${ServiceKey}/${Page}/${Count}/${Period1}/${Period2}/${Category}/${Region}/${Title}`);
+        const fetchData = (Array.isArray(response.data.dbs.db)) ? (
+            response.data.dbs.db.map((event) => ({
+                TITLE    : event.prfnm._text,     //제목
+                CODENAME : event.genrenm._text,   //분류
+                DATE1    : event.prfpdfrom._text, //날짜(시작)
+                DATE2    : event.prfpdto._text,   //날짜(종료)
+                PLACE    : event.fcltynm._text,   //장소
+                MAIN_IMG : event.poster._text,    //포스터
+                DATA_ID: event.mt20id._text,   //공연 ID
+            }))
+        ):(
+            {
+                TITLE    : response.data.dbs.db.prfnm._text,     //제목
+                CODENAME : response.data.dbs.db.genrenm._text,   //분류
+                DATE1    : response.data.dbs.db.prfpdfrom._text, //날짜(시작)
+                DATE2    : response.data.dbs.db.prfpdto._text,   //날짜(종료)
+                PLACE    : response.data.dbs.db.fcltynm._text,   //장소
+                MAIN_IMG : response.data.dbs.db.poster._text,    //포스터
+                DATA_ID: response.data.dbs.db.mt20id._text,   //공연 ID
+            }
+        ) 
         return fetchData;
     } catch (error) {
         console.error("Error fetching data: ", error);
@@ -59,9 +71,9 @@ const fetchRanking = async (ServiceKey, Category, Ststype, Area, Date) => {
     }
 };
 
-const fetchFestival = async (ServiceKey, Count, Period1, Period2, Category, Region, Title) => {
+const fetchFestival = async (ServiceKey, Count, Period1, Period2) => {
     try {
-        const response = await axios.get(`http://localhost:3002/apiFestival/${ServiceKey}/${Count}/${Period1}/${Period2}/${Category}/${Region}/${Title}`);
+        const response = await axios.get(`http://localhost:3002/apiFestival/${ServiceKey}/${Count}/${Period1}/${Period2}`);
         // console.log(response);
         const fetchData = response.data.dbs.db.map((event) => {
             return {
