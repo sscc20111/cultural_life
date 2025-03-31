@@ -46,7 +46,7 @@
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://sscc20111.github.io/List",
+  "homepage": "https://sscc20111.github.io/cultural_life/",
   "eslintConfig": {
     "extends": [
       "react-app",
