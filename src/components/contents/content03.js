@@ -14,7 +14,8 @@ const Content03 = ({ Item }) => {
         <div className='content content03'>
             <h3>다가오는 축제</h3>
             <Swiper slidesPerView={5} spaceBetween={30} freeMode={true} pagination={{ clickable: true, }} modules={[FreeMode, Pagination]} className="mySwiper" >
-                {Item.map((item, index) => (
+                {Item ? (
+                    Item.map((item, index) => (
                     <SwiperSlide key={index}>
                         <Link className='ItemBox' to="/Detail" state= {{DATA_ID:item.DATA_ID, DATA_LANK:index+1}}>
                             <div className='imgBox'>
@@ -29,7 +30,10 @@ const Content03 = ({ Item }) => {
                             </div>
                         </Link>
                     </SwiperSlide>
-                ))}
+                ))
+            ) : (
+                <div>Loading...</div>
+            )}
             </Swiper>
         </div>
     )

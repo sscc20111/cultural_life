@@ -28,7 +28,7 @@
 /* banner */
 .Wraper .MainPage .banner {height: 520px;background: #0000005b;}
 .Wraper .MainPage .banner .swiper {height: 100%; max-width: 1440px;}
-.Wraper .MainPage .banner .SliderWrap {display: flex; justify-content: space-around;}
+.Wraper .MainPage .banner .SliderWrap {display: flex; justify-content: space-around; align-items: center;}
 .Wraper .MainPage .banner .SliderWrap .imgBox {}
 .Wraper .MainPage .banner .SliderWrap .desc {display: flex; flex-direction: column; justify-content: center;}
 .Wraper .MainPage .banner .SliderWrap .desc h4 {margin: 0 0 30px 0; font-size: 35px; font-weight: 600;}

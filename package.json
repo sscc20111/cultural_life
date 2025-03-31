@@ -17,11 +17,14 @@
     "@types/xml-js": "^1.0.0",
     "axios": "^1.6.5",
     "bootstrap": "^5.3.3",
+    "buffer": "^6.0.3",
     "color-thief-react": "^2.1.0",
     "colorthief": "^2.4.0",
     "cors": "^2.8.5",
     "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "mongoose": "^8.5.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18.3.1",
@@ -29,6 +32,7 @@
     "react-scripts": "5.0.1",
     "request": "^2.88.2",
     "require": "^2.4.20",
+    "stream": "^0.0.3",
     "swiper": "^11.1.1",
     "ts-node": "^10.9.2",
     "typescript": "^4.9.5",
@@ -39,7 +43,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

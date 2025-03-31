@@ -29,7 +29,7 @@ const SearchBox = () => {
     }
 
     useEffect(()=>{
-        navigate('/List', {
+        navigate('', {
             state: {
                 KopisData: KopisData
             }

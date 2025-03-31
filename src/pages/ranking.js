@@ -31,7 +31,7 @@ const LangkingPage = ({Item, CateCode}) => {
                         <Link key={index} className='contentBox' to="/Detail" state= {{DATA_ID:item.DATA_ID, DATA_LANK:index+1}}>
                             <div className='iconBox'>
                                 <FontAwesomeIcon icon={faBookmark} />
-                                <span>{index}</span>
+                                <span>{index+1}</span>
                             </div>
                             <div className='imgBox'>
                                 <img src={item.MAIN_IMG} alt={item.TITLE}></img>

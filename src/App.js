@@ -18,6 +18,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './style.css';
 
+
+
+import axios from 'axios';
 function App() {
   const [BannerItem,setBannerItem] = useState([]);
   const [RankingItem,setRankingItem] = useState([]);
@@ -27,9 +30,12 @@ function App() {
   
 
   const bannerData = async () => { //openapi.seoul에 카테고리별 이미지 1개씩 요청
+    const searchText = '';
+    const page = 1;
+    const row = 1;
     for (const options of SeoulOption) {
       try {
-        const data = await fetchSeoul(options, '', 1);
+        const data = await fetchSeoul(ServiceKey.SEOUL, options, searchText, page, row);
         if (data.length > 0) {
           setBannerItem(prevData => [...prevData, ...data]);
         } else {
@@ -43,11 +49,12 @@ function App() {
 
   const rangkingData = async () => { //kopis에 카테고리별 랭킹10개씩 요청
     const today = new Date();
-    const startDate = format(today, 'yyyyMMdd');
+    const startDate = format(addDays(today, -7), 'yyyyMMdd'); // 오늘부터 7일 전  
+    const endDate = format(today, 'yyyyMMdd');
 
     for (const options of KopisOption) {
       try {
-        const data = await fetchRanking(ServiceKey.KPOPS, options.code, 'month', '11', startDate);
+        const data = await fetchRanking(ServiceKey.KPOPS, startDate, endDate, options.code);
         const filteredData = data.slice(0, 10);
         if (data.length > 0) {
           setRankingItem(prevData => [...prevData, {code:options.code, data:[...data]}]);

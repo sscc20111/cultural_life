@@ -1,8 +1,13 @@
 import axios from 'axios';
+import { xml2js } from 'xml-js';
+const convert = require("xml-js");
 
-const fetchSeoul = async (Option, searchText, Count) => {
+const fetchSeoul = async (ServiceKey, Option, SearchText, Page, Count) => {
     try {
-        const response = await axios.get(`http://openapi.seoul.go.kr:8088/596a4c615473736339366a51536f54/json/culturalEventInfo/1/${Count}/${Option}/${searchText}/`);
+        const url = `http://nmwoo.info/api/SeoulData.php?ServiceKey=${ServiceKey}&Page=${Page}&Count=${Count}&Option=${Option}&SearchText=${SearchText}/`
+        const response = await axios.get(url);
+        // console.log(url);
+        // console.log(response.data.culturalEventInfo);
         const fetchData = response.data.culturalEventInfo.row.map((event) => ({
             TITLE    : event.TITLE,    //제목
             CODENAME : event.CODENAME, //분류
@@ -12,6 +17,7 @@ const fetchSeoul = async (Option, searchText, Count) => {
             USE_FEE  : event.USE_FEE,  //이용요금
             MAIN_IMG : event.MAIN_IMG, //포스터
         }));
+        // console.log(fetchData.TITLE);
         return fetchData;
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -21,7 +27,9 @@ const fetchSeoul = async (Option, searchText, Count) => {
 
 const fetchKopis = async (ServiceKey, Page, Count, Period1, Period2, Category, Region, Title) => {
     try {
-        const response = await axios.get(`http://localhost:3002/api/${ServiceKey}/${Page}/${Count}/${Period1}/${Period2}/${Category}/${Region}/${Title}`);
+        const url = `http://nmwoo.info/api/KopisData.php?${ServiceKey}/${Page}/${Count}/${Period1}/${Period2}/${Category}/${Region}/${Title}`
+        const response = await axios.get(url);
+        // console.log(url);
         const fetchData = (Array.isArray(response.data.dbs.db)) ? (
             response.data.dbs.db.map((event) => ({
                 TITLE    : event.prfnm._text,     //제목
@@ -50,18 +58,22 @@ const fetchKopis = async (ServiceKey, Page, Count, Period1, Period2, Category, R
     }
 };
 
-const fetchRanking = async (ServiceKey, Category, Ststype, Area, Date) => {
+const fetchRanking = async (ServiceKey, StDate, EdDate, Catecode) => {
     try {
-        const response = await axios.get(`http://localhost:3002/apiRanking/${ServiceKey}/${Category}/${Ststype}/${Area}/${Date}`);
-        // console.log(response);
-        const fetchData = response.data.boxofs.boxof.map((event) => {
+        const url = `http://nmwoo.info/api/KopisRank.php?ServiceKey=${ServiceKey}&StDate=${StDate}&EdDate=${EdDate}&Catecode=${Catecode}`
+        // console.log(url);
+        const response = await axios.get(url);
+        // console.log(response.data);
+        const xmlToJson = convert.xml2js(response.data, {compact: true, spaces: 4})
+        // console.log(xmlToJson.boxofs.boxof);
+        const fetchData = xmlToJson.boxofs.boxof.map((event) => {
             return {
                 TITLE   : event.prfnm._text,   //제목
                 CODENAME: event.cate._text,   //분류
                 DATE1    : event.prfpd._text,   //날짜
                 PLACE   : event.prfplcnm._text,   //장소
                 AREA   : event.area._text,   //지역
-                MAIN_IMG: 'http://www.kopis.or.kr'+event.poster._text,   //포스터
+                MAIN_IMG: event.poster._text,   //포스터
                 DATA_ID: event.mt20id._text,   //공연 ID
             };
         }); 
@@ -73,9 +85,12 @@ const fetchRanking = async (ServiceKey, Category, Ststype, Area, Date) => {
 
 const fetchFestival = async (ServiceKey, Count, Period1, Period2) => {
     try {
-        const response = await axios.get(`http://localhost:3002/apiFestival/${ServiceKey}/${Count}/${Period1}/${Period2}`);
-        // console.log(response);
-        const fetchData = response.data.dbs.db.map((event) => {
+        const url = `http://nmwoo.info/api/KopisFestival.php?ServiceKey=${ServiceKey}&Period1=${Period1}&Period2=${Period2}&Count=${Count}`
+        // console.log(url);
+        const response = await axios.get(url);
+        const xmlToJson = convert.xml2js(response.data, {compact: true, spaces: 4})
+        // console.log(xmlToJson);
+        const fetchData = xmlToJson.dbs.db.map((event) => {
             return {
                 TITLE   : event.prfnm._text,   //제목
                 CODENAME: event.genrenm._text,   //분류
@@ -94,9 +109,12 @@ const fetchFestival = async (ServiceKey, Count, Period1, Period2) => {
 
 const fetchDetail = async (ServiceKey, DATA_ID) => {
     try {
-        const response = await axios.get(`http://localhost:3002/apiDetail/${ServiceKey}/${DATA_ID}`);
-        // console.log(response.data.dbs.db);
-        const event = response.data.dbs.db;
+        const url = `http://nmwoo.info/api/KopisData.php?ServiceKey=${ServiceKey}&DATA_ID=${DATA_ID}`;
+        const response = await axios.get(url);
+        // console.log(url);
+        const xmlToJson = convert.xml2js(response.data, {compact: true, spaces: 4})
+        // console.log(xmlToJson);
+        const event = xmlToJson.dbs.db;
         const fetchData = {
                 TITLE   : event.prfnm._text,   //제목
                 DATE1    : event.prfpdfrom._text, //날짜(시작)

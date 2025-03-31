@@ -20,6 +20,7 @@ const DetailPage = ({}) => {
     
     useEffect(()=>{
         DetailResponse();
+        console.log(ID);
     },[]);
     useEffect(()=>{
         // console.log(DetailItem.TIKET.relateurl._text)
